@@ -1,73 +1,73 @@
 const products = [
     {
         name: 'Sony Playstation 5',
-        url: 'imgs/playstation_5.png',
+        image: 'imgs/playstation_5.png',
         category: 'games',
         price: 499.99,
     },
     {
         name: 'Samsung Galaxy',
-        url: 'imgs/samsung_galaxy.png',
+        image: 'imgs/samsung_galaxy.png',
         category: 'smartphones',
         price: 399.99,
     },
     {
         name: 'Cannon EOS Camera',
-        url: 'imgs/cannon_eos_camera.png',
+        image: 'imgs/cannon_eos_camera.png',
         category: 'cameras',
         price: 749.99,
     },
     {
         name: 'Sony A7 Camera',
-        url: 'imgs/sony_a7_camera.png',
+        image: 'imgs/sony_a7_camera.png',
         category: 'cameras',
         price: 1999.99,
     },
     {
         name: 'LG TV',
-        url: 'imgs/lg_tv.png',
+        image: 'imgs/lg_tv.png',
         category: 'televisions',
         price: 799.99,
     },
     {
         name: 'Nintendo Switch',
-        url: 'imgs/nintendo_switch.png',
+        image: 'imgs/nintendo_switch.png',
         category: 'games',
         price: 299.99,
     },
     {
         name: 'Xbox Series X',
-        url: 'imgs/xbox_series_x.png',
+        image: 'imgs/xbox_series_x.png',
         category: 'games',
         price: 499.99,
     },
     {
         name: 'Samsung TV',
-        url: 'imgs/samsung_tv.png',
+        image: 'imgs/samsung_tv.png',
         category: 'televisions',
         price: 1099.99,
     },
     {
         name: 'Google Pixel',
-        url: 'imgs/google_pixel.png',
+        image: 'imgs/google_pixel.png',
         category: 'smartphones',
         price: 499.99,
     },
     {
         name: 'Sony ZV1F Camera',
-        url: 'imgs/sony_zv1f_camera.png',
+        image: 'imgs/sony_zv1f_camera.png',
         category: 'cameras',
         price: 799.99,
     },
     {
         name: 'Toshiba TV',
-        url: 'imgs/toshiba_tv.png',
+        image: 'imgs/toshiba_tv.png',
         category: 'televisions',
         price: 499.99,
     },
     {
         name: 'iPhone 14',
-        url: 'imgs/iphone_14.png',
+        image: 'imgs/iphone_14.png',
         category: 'smartphones',
         price: 999.99,
     },
@@ -80,5 +80,30 @@ const filtersContainer = document.querySelector('#filters-container');
 const searchInput = document.querySelector('#search');
 const cartCount = document.querySelector('#cart-count');
 
+// initializing cart item count
+let cartItemCount = 0;
 
-console.log(cartCount)
+// initializing product array
+const productElements = [];
+
+// loop over products and create element
+products.forEach(product => {
+    const productElem = document.createElement('div');
+    productElem.className = 'item space-y-2';
+    productElem.innerHTML = `
+        <div
+            class="bg-gray-100 flex justify-center relative overflow-hidden group cursor-pointer border rounded-xl">
+            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover" />
+            <button
+                class="status bg-black text-white absolute bottom-0 left-0 right-0 text-center py-2 translate-y-full transition group-hover:translate-y-0">Add
+                To Cart
+            </button>
+        </div>  
+        <p class="text-xl">${product.name}</p>
+        <strong>$${product.price.toLocaleString()}</strong>
+    `;
+    // pushing into array
+    productElements.push(productElem);
+    // populating wrapper in DOM
+    productsWrapper.appendChild(productElem);
+});
