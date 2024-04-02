@@ -88,11 +88,20 @@ const productElements = [];
 
 // loop over products and create element
 products.forEach(product => {
+    const productElem = createProductElem(product);
+    // pushing into array
+    productElements.push(productElem);
+    // populating wrapper in DOM
+    productsWrapper.appendChild(productElem);
+});
+
+// create product element
+function createProductElem(product) {
     const productElem = document.createElement('div');
     productElem.className = 'item space-y-2';
     productElem.innerHTML = `
         <div
-            class="bg-gray-100 flex justify-center relative overflow-hidden group cursor-pointer border rounded-xl">
+            class="bg-gray-700 flex justify-center relative overflow-hidden group cursor-pointer border rounded-xl">
             <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover" />
             <button
                 class="status bg-black text-white absolute bottom-0 left-0 right-0 text-center py-2 translate-y-full transition group-hover:translate-y-0">Add
@@ -102,8 +111,6 @@ products.forEach(product => {
         <p class="text-xl">${product.name}</p>
         <strong>$${product.price.toLocaleString()}</strong>
     `;
-    // pushing into array
-    productElements.push(productElem);
-    // populating wrapper in DOM
-    productsWrapper.appendChild(productElem);
-});
+
+    return productElem;
+}
