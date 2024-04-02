@@ -112,5 +112,31 @@ function createProductElem(product) {
         <strong>$${product.price.toLocaleString()}</strong>
     `;
 
+    productElem.querySelector('.status').addEventListener('click', updateCart);
+
     return productElem;
+}
+
+// Add or remove from cart functionality
+function updateCart(e) {
+    const statusElem = e.target;
+    
+    if (statusElem.classList.contains('added')) {
+        statusElem.classList.remove('added');
+        statusElem.innerText = 'Add to cart';
+        statusElem.classList.remove('bg-red-600');
+        statusElem.classList.add('bg-gray-800');
+
+        cartItemCount--;
+    } else {
+        statusElem.classList.add('added');
+        statusElem.innerText = 'Remove from cart';
+        statusElem.classList.remove('bg-gray-800');
+        statusElem.classList.add('bg-red-600');
+
+        cartItemCount++;
+    }
+
+    // update cart item count display
+    cartCount.innerText = cartItemCount.toString();
 }
