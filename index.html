@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Item Filtering</title>
+    <title>Products Filtering</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="script.js" defer></script>
 </head>
@@ -14,8 +14,10 @@
         <div class="container max-w-6xl mx-auto flex flex-col sm:flex-row gap-8 items-center">
             <!-- Search area -->
             <div class="relative w-full">
-                <input type="text" id="search" class="bg-gray-700 rounded-full p-2 pl-10 transition focus:w-full"
+                <input type="text" id="search" class="bg-gray-700 rounded-full p-2 pl-10 transition"
                     placeholder="Search products..." />
+                <!-- <input type="text" id="search" class="bg-gray-700 rounded-full p-2 pl-10 transition focus:w-full"
+                    placeholder="Search products..." /> -->
                 <svg class="absolute left-2 top-1/2 -translate-y-1/2" xmlns="http://www.w3.org/2000/svg" width="20"
                     height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -63,11 +65,11 @@
                 </div>
             </div>
         </div>
-
+        
         <!-- Products wrapper -->
         <div id="products-wrapper"
-            class="w-full max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-6 place-content-center p-4">
-
+        class="w-full max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-6 place-content-center p-4">
+        
             <!-- <div class="item space-y-2">
                 <div
                     class="bg-gray-100 flex justify-center relative overflow-hidden group cursor-pointer border rounded-xl">
