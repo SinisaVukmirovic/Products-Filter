@@ -153,5 +153,22 @@ function filterProducts() {
         .filter(check => check.checked)
         .map(check => check.id);
 
+    // loop over products and check for matches
+    productElements.forEach((productElem, index) => {
+        const product = products[index];
 
+        // check to see if the products matches the search or checked category
+        const matchesSearchTerm = product.name.toLowerCase().includes(searchTerm);
+        const isInCheckedCategory = checkedCategories.length === 0 
+            || checkedCategories.includes(product.category);
+
+        // show or hide filtered elems
+        if (matchesSearchTerm && isInCheckedCategory) {
+            productElem.classList.remove('hidden');
+        } else {
+            productElem.classList.add('hidden');
+        }
+        // searchInput = '';
+    });
 }
+
