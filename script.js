@@ -86,6 +86,10 @@ let cartItemCount = 0;
 // initializing product array
 const productElements = [];
 
+// ev lsiteners for filtering functionality for both checkboxes and search
+filtersContainer.addEventListener('change', filterProducts);
+searchInput.addEventListener('input', filterProducts);
+
 // loop over products and create element
 products.forEach(product => {
     const productElem = createProductElem(product);
@@ -139,4 +143,15 @@ function updateCart(e) {
 
     // update cart item count display
     cartCount.innerText = cartItemCount.toString();
+}
+
+// filter products functionality
+function filterProducts() {
+    const searchTerm = searchInput.value.trim().toLowerCase();
+
+    const checkedCategories = Array.from(checkboxes)
+        .filter(check => check.checked)
+        .map(check => check.id);
+
+
 }
