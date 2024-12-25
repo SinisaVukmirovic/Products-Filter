@@ -85,16 +85,20 @@ let cartItemCount = 0;
 
 // initializing product array
 const productElements = [];
+// console.log(productElements);
 
 // ev lsiteners for filtering functionality for both checkboxes and search
 filtersContainer.addEventListener('change', filterProducts);
 searchInput.addEventListener('input', filterProducts);
+
+let viewTransitionCounter = 0; 
 
 // loop over products and create element
 products.forEach(product => {
     const productElem = createProductElem(product);
     // pushing into array
     productElements.push(productElem);
+    // console.log(productElements);
     // populating wrapper in DOM
     productsWrapper.appendChild(productElem);
 });
@@ -103,6 +107,7 @@ products.forEach(product => {
 function createProductElem(product) {
     const productElem = document.createElement('div');
     productElem.className = 'item space-y-2';
+    productElem.style.viewTransitionName = `product-${++viewTransitionCounter}`;
     productElem.innerHTML = `
         <div
             class="bg-gray-700 flex justify-center relative overflow-hidden group cursor-pointer border rounded-xl">
@@ -162,13 +167,20 @@ function filterProducts() {
         const isInCheckedCategory = checkedCategories.length === 0 
             || checkedCategories.includes(product.category);
 
-        // show or hide filtered elems
-        if (matchesSearchTerm && isInCheckedCategory) {
-            productElem.classList.remove('hidden');
-        } else {
-            productElem.classList.add('hidden');
-        }
+            document.startViewTransition(() => {
+                // show or hide filtered elems
+                if (matchesSearchTerm && isInCheckedCategory) {
+                    productElem.classList.remove('hidden');
+                } else {
+                    productElem.classList.add('hidden');
+                }
+            });
+        // // show or hide filtered elems
+        // if (matchesSearchTerm && isInCheckedCategory) {
+        //     productElem.classList.remove('hidden');
+        // } else {
+        //     productElem.classList.add('hidden');
+        // }
         // searchInput = '';
     });
 }
-
